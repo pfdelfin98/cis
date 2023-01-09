@@ -14,10 +14,10 @@
         </div>
         <div class="card-body">
         <?php 
-// include 'config.php';
-// $pdo_statement = $pdo->prepare("");
-// $pdo_statement->execute();
-// $result = $pdo_statement->fetchAll();
+include 'db.php';
+$pdo_statement = $pdo->prepare("Select * from tbl_login");
+$pdo_statement->execute();
+$result = $pdo_statement->fetchAll();
 ?>
 
     <table id="table" class="table table-bordered table-hover font-weight-normal" style="font-size:15px;">
@@ -38,9 +38,9 @@ foreach($result as $row) {
 ?>
  <tr class="table-row text-center">
          <td><?php echo $row["id"]; ?></td>
-        <td><?php echo $row['firstname'].''.$row['lastname'] ?></td>
+        <td><?php echo $row['fullname'];?></td>
         <td><?php echo $row['username']; ?></td>
-        <td><?php echo $row['role']; ?></td>
+        <td><?php echo $row['type']; ?></td>
 
 <?php
 }
