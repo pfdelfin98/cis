@@ -11,16 +11,17 @@
             Deceased Person List
         </div>
         <div class="card-body">
-        <?php 
-// include 'config.php';
-// $pdo_statement = $pdo->prepare("");
-// $pdo_statement->execute();
-// $result = $pdo_statement->fetchAll();
+<?php
+include 'db.php';
+$pdo_statement = $pdo->prepare("SELECT * FROM `tbl_deceased_persons` WHERE `date_died` > DATE_SUB(CURDATE(), INTERVAL 5 YEAR)"); # Select Deceased Person 
+$pdo_statement->execute();
+$result = $pdo_statement->fetchAll();
 ?>
 
     <table id="table" class="table table-bordered table-hover font-weight-normal" style="font-size:15px;">
     <thead>
 	<tr>
+
     <th class="text-center">Image</th>
     <th class="text-center">Grave No.</th>
     <th class="text-center">Row</th>
@@ -33,16 +34,17 @@
   <tbody id="table-body">
       <?php
 if(!empty($result)) { 
-foreach($result as $row) {
+    foreach($result as $row) {
 
 ?>
  <tr class="table-row text-center">
-         <td><?php echo $row["image"]; ?></td>
-        <td><?php echo $row["grave_no"]; ?></td>
-        <td><?php echo $row["row_no"]; ?></td>
+
+        <td><?php echo $row["grave_image"]; ?></td>
+        <td><?php echo $row["grave_id"]; ?></td>
+        <td><?php echo $row["grave_row"]; ?></td>
         <td><?php echo $row['firstname'].' '.$row['middlename'].' '.$row['lastname'] ?></td>
         <td><?php echo $row['birthdate']; ?></td>
-        <td><?php echo $row['died_date']; ?></td>
+        <td><?php echo $row['date_died']; ?></td>
 
 <?php
 }

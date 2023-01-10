@@ -104,7 +104,7 @@
             </div>
 
             <div class="col mt-4 mb-5">
-                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                <button type="submit" name="login" class="btn btn-primary btn-block">Log In</button>
             </div>
             <br>
             </div>
