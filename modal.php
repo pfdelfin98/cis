@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="function.php?add_deceased" method="POST">
+      <form action="function.php?add_deceased" method="POST" enctype="multipart/form-data">
 
       <div class="modal-body">
         <div class="row mt-3 pl-4 pr-4">
@@ -16,14 +16,14 @@
               <label for="">Grave/Row</label>
         </div>
             <div class="col-md-5">
-                <select name="grave_no" class="form-control" id="1">
+                <select name="grave_id" class="form-control" id="1">
                 <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
             </div>
             <div class="col-md-5">
-            <select name="row_no" class="form-control" id="1">
+            <select name="grave_row" class="form-control" id="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -63,11 +63,16 @@
         <div class="row mt-4 pl-5 pr-5 pb-5">
             <div class="col">
             <label for="">Date Died:</label>
-                <input type="date" name="datedied" class="form-control">
+                <input type="date" name="date_died" class="form-control">
             </div>
         </div>
 
-
+    <div class="row pl-5 pr-5 pb-5" style="margin-top:-20px;">
+            <div class="col">
+            <label for="">Image:</label>
+            <input type="file" class="form-control border-0" name="image">
+            </div>
+        </div>
 
       </div>
       <div class="modal-footer">

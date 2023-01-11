@@ -36,6 +36,51 @@ if(isset($_POST['login'])){
   }
 }
 
+if(isset($_GET['add_deceased'])){
+
+  $firstname = $_POST['firstname'];
+  $middlename = $_POST['middlename'];
+  $lastname = $_POST['lastname'];
+  $birthdate = $_POST['birthdate'];
+  $date_died = $_POST['date_died'];
+  $grave_row = $_POST['grave_row'];
+  $grave_id = $_POST['grave_id'];
+
+  $filename = $_FILES["image"]["name"];
+  $tempname = $_FILES["image"]["tmp_name"];
+  $folder = "img/" . $filename;
+
+  $insert_query = "INSERT INTO `tbl_deceased_persons`
+  (`grave_image`, `grave_id`, `firstname`, `middlename`, `lastname`, `birthdate`, `date_died`,`grave_row`) 
+  VALUES
+   (:grave_image, :grave_id, :firstname, :middlename, :lastname, :birthdate, :date_died, :grave_row)";
+  $insert_statement = $pdo->prepare($insert_query);
+  $insert_result = $insert_statement->execute(  
+    array(  
+         'grave_image'   =>     $filename,  
+         'grave_id'      =>     $grave_id,
+         'firstname'     =>     $firstname,
+         'middlename'    =>     $middlename,
+         'lastname'      =>     $lastname,
+         'birthdate'     =>     $birthdate,
+         'date_died'     =>     $date_died,
+         'grave_row'     =>     $grave_row
+
+    )  
+  );
+  if($insert_result) {
+    if (move_uploaded_file($tempname, $folder)) {
+        header('location: deceased.php?1');
+    } else {
+        echo "<h3>  Failed to upload image!</h3>";
+    }
+  
+  }
+
+
+ 
+
+}
 if(isset($_POST['add_user'])){
   
   $firstname = $_POST['firstname'];
@@ -57,7 +102,7 @@ if(isset($_POST['add_user'])){
     )  
   );
   if($insert_result) {
-    header('location: user.php');
+    header('location: user.php?1');
   }
 
 }
